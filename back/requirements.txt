@@ -1,0 +1,6 @@
+fastapi~=0.115.12
+uvicorn
+python-jose[cryptography]==3.4.0
+passlib~=1.7.4
+pydantic~=2.11.1
+bcrypt==4.1.2
