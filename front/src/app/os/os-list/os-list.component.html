@@ -1,0 +1,51 @@
+<div class="os-list-container">
+  <app-header
+    (newOrder)="createNewOrder()"
+    (logout)="onLogout()">
+  </app-header>
+
+  @if (loading) {
+    <div class="loading">Carregando...</div>
+  }
+
+  @if (!loading && orders.length === 0) {
+    <div class="no-orders">
+      Nenhuma ordem de serviço encontrada.
+    </div>
+  }
+
+  @if (!loading && orders.length > 0) {
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Técnico</th>
+          <th>Data</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of orders; track order.id) {
+          <tr>
+            <td>{{order.id}}</td>
+            <td>{{order.technician}}</td>
+            <td>{{order.date | date:'dd/MM/yyyy'}}</td>
+            <td>
+              <span [class]="'status-' + order.status">
+                @switch (order.status) {
+                  @case ('open') { Aberta }
+                  @case ('in_progress') { Em andamento }
+                  @default { Concluída }
+                }
+              </span>
+            </td>
+            <td>
+              <button (click)="viewOrder(order.id!)">Visualizar</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

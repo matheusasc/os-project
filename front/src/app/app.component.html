@@ -1,0 +1,7 @@
+@if (isAuthenticated$ | async) {
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+} @else {
+  <router-outlet></router-outlet>
+}

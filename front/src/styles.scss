@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Estilos gerais para botões */
+button {
+  transition: background-color 0.3s ease;
+}
+
+/* Estilos para mensagens de erro globais */
+.global-error {
+  color: red;
+  padding: 10px;
+  text-align: center;
+}

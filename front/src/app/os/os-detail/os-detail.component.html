@@ -1,0 +1,63 @@
+<div class="os-detail-container">
+  <h2>{{isNew ? 'Nova Ordem de Serviço' : 'Editar Ordem de Serviço'}}</h2>
+
+  @if (loading) {
+    <div class="loading">Carregando...</div>
+  }
+
+  @if (!loading) {
+    <form (ngSubmit)="saveOrder()">
+      <div class="form-group">
+        <label>Técnico</label>
+        <input type="text" [(ngModel)]="order.technician" name="technician" readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Data</label>
+        <input type="date" [(ngModel)]="order.date" name="date">
+      </div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <select [(ngModel)]="order.status" name="status">
+          <option value="open">Aberta</option>
+          <option value="in_progress">Em andamento</option>
+          <option value="completed">Concluída</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Descrição das Atividades</label>
+        <textarea [(ngModel)]="order.description" name="description" rows="5"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Checklist</label>
+        <div class="checklist">
+          @for (item of order.checklist; track item.id) {
+            <div class="checklist-item">
+              <input type="checkbox" [id]="'item-' + item.id" [(ngModel)]="item.checked"
+                    [ngModelOptions]="{standalone: true}" (change)="toggleChecklistItem(item)">
+              <label [for]="'item-' + item.id">{{item.description}}</label>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Foto Comprovante</label>
+        <input type="file" accept="image/*" (change)="onFileSelected($event)" capture="environment">
+        @if (photoPreview || order.photo) {
+          <div class="photo-preview">
+            <img [src]="photoPreview || order.photo" alt="Foto comprovante">
+          </div>
+        }
+      </div>
+
+      <div class="form-actions">
+        <button type="button" (click)="cancel()">Cancelar</button>
+        <button type="submit">Salvar</button>
+      </div>
+    </form>
+  }
+</div>
