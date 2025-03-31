@@ -1,6 +1,14 @@
 @if (isAuthenticated$ | async) {
-  <div class="container">
-    <router-outlet></router-outlet>
+  <div class="d-flex flex-column vh-100">
+    <app-header
+      (newOrder)="createNewOrder()"
+      (logout)="onLogout()">
+    </app-header>
+    <div class="flex-grow-1 overflow-auto">
+      <div class="container-fluid py-3">
+        <router-outlet *ngIf="isRouterActive"></router-outlet>
+      </div>
+    </div>
   </div>
 } @else {
   <router-outlet></router-outlet>
