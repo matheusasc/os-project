@@ -32,18 +32,25 @@ export class OsDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.order = {
+      technician: '',
+      description: '',
+      date: new Date(),
+      checklist: [],
+      status: 'open'
+    };
+
     const id = this.route.snapshot.paramMap.get('id');
 
     if (id === 'new') {
       this.isNew = true;
-      // const user = this.authService.getCurrentUser();
-      // if (user) {
-      //   this.order.technician = user.name;
-      // }
       this.order.checklist = this.osService.getDefaultChecklist();
       this.loading = false;
     } else {
-      this.osService.getOrder(Number(id)).subscribe(
+      this.isNew = false;
+      const staticOrderId = 1;
+
+      this.osService.getOrder(staticOrderId).subscribe(
         order => {
           this.order = order;
           this.loading = false;
@@ -54,6 +61,16 @@ export class OsDetailComponent implements OnInit {
         }
       );
     }
+  }
+
+  ngOnDestroy(): void {
+    this.order = {
+      technician: '',
+      description: '',
+      date: new Date(),
+      checklist: [],
+      status: 'open'
+    };
   }
 
   onFileSelected(event: Event): void {
