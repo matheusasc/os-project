@@ -9,8 +9,8 @@ class ChecklistItem(BaseModel):
     checked: bool
 
 
-class OrderServiceBase(BaseModel):
-    technician: str
+# Modelo para criação (o que vem do cliente)
+class OrderServiceCreate(BaseModel):
     description: str
     date: date
     status: str  # 'open', 'in_progress', 'completed'
@@ -18,10 +18,12 @@ class OrderServiceBase(BaseModel):
     photo: Optional[str] = None
 
 
-class OrderServiceCreate(OrderServiceBase):
-    pass
+# Modelo base (com campos completos)
+class OrderServiceBase(OrderServiceCreate):
+    technician: str
 
 
+# Modelo para resposta (com ID)
 class OrderService(OrderServiceBase):
     id: int
 
