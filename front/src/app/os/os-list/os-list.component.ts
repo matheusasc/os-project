@@ -9,7 +9,7 @@ import { HeaderComponent } from '../../shared/header/header.component';
 @Component({
   selector: 'app-os-list',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule],
   templateUrl: './os-list.component.html',
   styleUrls: ['./os-list.component.scss']
 })
@@ -47,8 +47,13 @@ export class OsListComponent implements OnInit {
     this.router.navigate(['/os', orderId]);
   }
 
-  onLogout(): void {
-    this.authService.logout();
+  getStatusBadgeClass(status: string): string {
+    const statusMap: {[key: string]: string} = {
+      'open': 'open',
+      'in_progress': 'in_progress',
+      'completed': 'completed'
+    };
+    return statusMap[status] || 'secondary';
   }
 
 }
