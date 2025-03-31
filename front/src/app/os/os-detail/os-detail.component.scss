@@ -1,92 +1,25 @@
-.os-detail-container {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.card {
+  border: none;
+  border-radius: 0.5rem;
+}
 
-  .form-group {
-    margin-bottom: 15px;
+.list-group-item {
+  padding: 0.75rem 1.25rem;
+  border-left: none;
+  border-right: none;
 
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-    }
-
-    textarea {
-      min-height: 100px;
-    }
-
-    .checklist {
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 4px;
-
-      .checklist-item {
-        margin-bottom: 8px;
-
-        label {
-          display: inline;
-          font-weight: normal;
-          margin-left: 8px;
-        }
-      }
-    }
-
-    .photo-preview {
-      margin-top: 10px;
-
-      img {
-        max-width: 100%;
-        max-height: 300px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-      }
-    }
+  &:first-child {
+    border-top: none;
   }
 
-  .form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 20px;
-
-    button {
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-
-      &:first-child {
-        background: #6c757d;
-        color: white;
-        border: none;
-
-        &:hover {
-          background: #5a6268;
-        }
-      }
-
-      &:last-child {
-        background: #28a745;
-        color: white;
-        border: none;
-
-        &:hover {
-          background: #218838;
-        }
-      }
-    }
+  &:last-child {
+    border-bottom: none;
   }
+}
 
-  .loading {
-    text-align: center;
-    padding: 20px;
-    color: #666;
-  }
+.img-thumbnail {
+  border-radius: 0.25rem;
+  border: 1px solid #dee2e6;
+  padding: 0.25rem;
+  background-color: #fff;
 }
